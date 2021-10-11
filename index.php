@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     
@@ -18,9 +22,16 @@
                 <div class="column is-4 is-offset-4">
                     <h3 class="title has-text-grey">Sistema de Login</h3>
                     <h3 class="title has-text-grey"><a href="https://youtube.com/canaltioficial" target="_blank">Canal TI</a></h3>
+                    <?php
+                         if(isset($_SESSION['não autenticado'])):
+                    ?>
                     <div class="notification is-danger">
                       <p>ERRO: Usuário ou senha inválidos.</p>
                     </div>
+                    <?php
+                        endif;
+                        unset($_SESSION['não autenticado']);
+                    ?>
                     <div class="box">
                         <form action="login.php" method="POST">
                             <div class="field">
@@ -28,7 +39,6 @@
                                     <input name="usuario" name="text" class="input is-large" placeholder="Seu usuário" autofocus="">
                                 </div>
                             </div>
-
                             <div class="field">
                                 <div class="control">
                                     <input name="senha" class="input is-large" type="password" placeholder="Sua senha">
